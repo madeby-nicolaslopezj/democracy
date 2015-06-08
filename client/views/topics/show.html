@@ -1,0 +1,88 @@
+<template name="topicsShow">
+  {{> alertsLogin }}
+  {{# with topic }}
+    <div class="container">
+      <br>
+      <h4 class="center">{{ title }}</h4>
+      <p class="center">{{ description }}</p>
+      {{# if content }}
+        <div class="row">
+          <div class="col s12 m12 l10 offset-l1">
+            <div class="divider"></div><br>
+            {{{ content }}}
+          </div>
+        </div>
+      {{/ if }}
+      <br>
+      {{# if hasQuestions }}
+        <table class="questions hoverable responsive-table">
+          <thead>
+            <tr>
+              <td><b>{{ i18n 'questions.title' }}</b></td>
+              <td><b>{{ i18n 'lib.yes' }}</b></td>
+              <td><b>{{ i18n 'lib.no' }}</b></td>
+              <td><b>{{ i18n 'lib.abstention' }}</b></td>
+            </tr>
+          </thead>
+          {{# each questions }}
+            <tr>
+              <td>{{ title }}</td>
+              <td>
+                {{# if currentUser }}
+                  {{# if userVoteIs currentUser._id 'yes' }}
+                    <input name="vote-{{ _id }}" type="radio" value="yes" id="vote-yes-{{ _id }}" checked/>
+                    <label for="vote-yes-{{ _id }}">{{ getCount 'yes' }}</label>
+                  {{ else }}
+                    <input name="vote-{{ _id }}" type="radio" value="yes" id="vote-yes-{{ _id }}"/>
+                    <label for="vote-yes-{{ _id }}">{{ getCount 'yes' }}</label>
+                  {{/ if }}
+                {{ else }}
+                  <input name="vote-{{ _id }}" type="radio" value="yes" id="vote-yes-{{ _id }}" disabled/>
+                  <label for="vote-yes-{{ _id }}">{{ getCount 'yes' }}</label>
+                {{/ if }}
+                <br>
+                
+              </td>
+              <td>
+                {{# if currentUser }}
+                  {{# if userVoteIs currentUser._id 'no' }}
+                    <input name="vote-{{ _id }}" type="radio" value="no" id="vote-no-{{ _id }}" checked/>
+                    <label for="vote-no-{{ _id }}">{{ getCount 'no' }}</label>
+                  {{ else }}
+                    <input name="vote-{{ _id }}" type="radio" value="no" id="vote-no-{{ _id }}"/>
+                    <label for="vote-no-{{ _id }}">{{ getCount 'no' }}</label>
+                  {{/ if }}
+                {{ else }}
+                  <input name="vote-{{ _id }}" type="radio" value="yes" id="vote-yes-{{ _id }}" disabled/>
+                  <label for="vote-yes-{{ _id }}">{{ getCount 'yes' }}</label>
+                {{/ if }}
+              </td>
+              <td>
+                {{# if currentUser }}
+                  {{# if userVoteIs currentUser._id 'abstention' }}
+                    <input name="vote-{{ _id }}" type="radio" value="abstention" id="vote-abstention-{{ _id }}" checked/>
+                    <label for="vote-abstention-{{ _id }}">{{ getCount 'abstention' }}</label>
+                  {{ else }}
+                    <input name="vote-{{ _id }}" type="radio" value="abstention" id="vote-abstention-{{ _id }}"/>
+                    <label for="vote-abstention-{{ _id }}">{{ getCount 'abstention' }}</label>
+                  {{/ if }}
+                {{ else }}
+                  <input name="vote-{{ _id }}" type="radio" value="yes" id="vote-yes-{{ _id }}" disabled/>
+                  <label for="vote-yes-{{ _id }}">{{ getCount 'yes' }}</label>
+                {{/ if }}
+              </td>
+            </tr>
+          {{/ each }}
+        </table>
+      {{/ if }}
+      <br>
+      <div class="row">
+        <div class="col s12 m12 l10 offset-l1">
+          <div class="fb-comments" data-href="{{ urlFor 'topics.show' }}" data-numposts="5" data-colorscheme="light" data-order-by="social" data-width="100%"></div>
+        </div>
+      </div>
+    </div>
+  {{ else }}
+    {{> loading }}
+  {{/ with }}
+</template>

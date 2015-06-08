@@ -1,0 +1,45 @@
+<template name="layout">
+  <header>
+    <nav class="grey darken-3">
+      <div class="nav-wrapper">
+        <a href="{{ pathFor 'home' }}" class="brand-logo center">{{ dict 'basic.title' }}</a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main>
+    {{> yield }}
+  </main>
+  <footer class="page-footer grey darken-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">{{ dict 'footer.title' }}</h5>
+          <p class="grey-text text-lighten-4">{{ dict 'footer.text' }}</p>
+          <p>
+            {{# if currentUser }}
+              <a href="#" class="btn-logout grey-text text-lighten-4"><b>{{ i18n 'lib.logout' }}</b></a>
+            {{ else }}
+              <a href="{{ pathFor 'login' }}" class="btn-logout grey-text text-lighten-4"><b>{{ i18n 'lib.login' }}</b></a>
+            {{/ if }}
+          </p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">{{ dict 'footer.pagesTitle' }}</h5>
+          <ul>
+            {{# each pages }}
+              <li><a class="grey-text text-lighten-3" href="{{ pathFor 'pages' }}">{{ title }}</a></li>
+            {{/ each }}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2015 Nicolás López
+      <a class="grey-text text-lighten-4 right" href="http://nicolaslopez.co">nicolaslopez.co</a>
+      </div>
+    </div>
+  </footer>
+</template>

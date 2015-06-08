@@ -1,0 +1,23 @@
+<template name="alertsLogin">
+  {{# if currentUser }}
+    {{# unless currentUser.isVerified }}
+      <div class="container center">
+        <p>
+          <b>{{ i18n 'lib.verifyEmail' }}</b>
+        </p>
+        <p>
+          <a class="btn waves-effect waves-light red btn-resend">{{ i18n 'lib.resendVerificationEmail' }}</a>
+        </p>
+      </div>
+    {{/ unless }}
+  {{ else }}
+    <div class="container center">
+      <p>
+        <b>{{ i18n 'lib.notLoggedInAlert' }}</b>
+      </p>
+      <p>
+        <a href="{{ pathFor 'login' }}" class="btn waves-effect waves-light red">{{ i18n 'lib.login' }}</a>
+      </p>
+    </div>
+  {{/ if }}
+</template>
