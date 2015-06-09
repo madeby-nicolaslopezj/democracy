@@ -7,16 +7,9 @@ Template.topicsShow.onRendered(function() {
     if (Topics.find({ slug: Router.current().params.slug }).count() === 0) {
       return;
     }
-    var count = 0
-    var func = function() {
-      if (window.FB) {
-        window.FB.XFBML.parse(document.body);
-      } else if (count < 30) {
-        count++;
-        Meteor.setTimeout(func, 40);
-      }
-    }
-    func();
+    Meteor.setTimeout(function() {
+      window.FB.XFBML.parse(document.body);
+    }, 1000);
   });
 });
 
