@@ -3,9 +3,16 @@ Template.topicsShow.onCreated(function() {
 });
 
 Template.topicsShow.onRendered(function() {
-  if (window.FB) {
-    window.FB.XFBML.parse(document.body);
+  var count = 0
+  var func = function() {
+    if (window.FB) {
+      window.FB.XFBML.parse(document.body);
+    } else if (count < 30) {
+      count++;
+      Meteor.setTimeout(func, 40);
+    }
   }
+  func();
 });
 
 Template.topicsShow.helpers({

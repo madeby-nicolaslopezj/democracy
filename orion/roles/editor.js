@@ -1,1 +1,0 @@
-Editor = new Roles.Role('editor');

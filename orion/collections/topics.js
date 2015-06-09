@@ -13,12 +13,16 @@ Topics.attachSchema(new SimpleSchema({
     unique: true,
     regEx: /^[a-z0-9A-Z_-]+$/
   },
-  content: orion.attribute('froala'),
+  content: orion.attribute('froala', {
+    label: orion.helpers.getTranslation('topics.schema.content'),
+    optional: true
+  }),
   hidden: {
     type: Boolean,
     label: orion.helpers.getTranslation('topics.schema.hidden')
   },
-  createdAt: orion.attribute('createdAt')
+  createdAt: orion.attribute('createdAt'),
+  createdBy: orion.attribute('createdBy')
 }));
 
 Topics.helpers({

@@ -1,14 +1,22 @@
 <template name="alertsLogin">
   {{# if currentUser }}
     {{# unless currentUser.isVerified }}
-      <div class="container center">
-        <p>
-          <b>{{ i18n 'lib.verifyEmail' }}</b>
-        </p>
-        <p>
-          <a class="btn waves-effect waves-light red btn-resend">{{ i18n 'lib.resendVerificationEmail' }}</a>
-        </p>
-      </div>
+      {{# unless hide }}
+        <div class="container center">
+          <p>
+            <b>{{ i18n 'lib.verifyEmail' }}</b>
+          </p>
+          <p>
+            <a class="btn waves-effect waves-light red btn-resend">{{ i18n 'lib.resendVerificationEmail' }}</a>
+          </p>
+        </div>
+      {{ else }}
+        <div class="container center">
+          <p>
+            <b>{{ i18n 'lib.verifyEmailSent' }}</b>
+          </p>
+        </div>
+      {{/ unless }}
     {{/ unless }}
   {{ else }}
     <div class="container center">

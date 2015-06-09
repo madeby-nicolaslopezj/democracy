@@ -5,6 +5,10 @@ Votes.attachSchema(new SimpleSchema({
       if (this.userId !== this.value) {
         return 'notAllowed';
       }
+      var user = Meteor.users.findOne(this.userId);
+      if (!user.isVerified()) {
+        return 'mustVerify';
+      }
     }
   },
   questionId: {
@@ -15,6 +19,11 @@ Votes.attachSchema(new SimpleSchema({
       }
       if (Votes.find({ questionId: this.value, userId: this.field('userId').value }).count() !== 0) {
         return 'alreadyVoted';
+      }
+      var question = Questions.findOne(this.value);
+      var topic = Topics.findOne(question.topicId);
+      if (topic && topic.hidden) {
+        return 'topicHidden';
       }
     }
   },
@@ -28,8 +37,12 @@ Votes.attachSchema(new SimpleSchema({
 Tracker.autorun(function () {
   var questionNotExists = i18n('errors.questionNotExists');
   var alreadyVoted = i18n('errors.alreadyVoted');
+  var mustVerify = i18n('errors.mustVerify');
+  var topicHidden = i18n('errors.topicHidden');
   SimpleSchema.messages({
     questionNotExists: questionNotExists,
-    alreadyVoted: alreadyVoted
+    alreadyVoted: alreadyVoted,
+    mustVerify: mustVerify,
+    topicHidden: topicHidden
   })
 });

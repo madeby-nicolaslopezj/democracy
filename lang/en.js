@@ -10,18 +10,22 @@ i18n.map('en', {
     abstention: 'Abstention',
     viewTopic: 'Vote',
     login: 'Login',
-    logout: 'Logout'
+    logout: 'Logout',
+    verifyEmailSent: 'Email sent',
+    topicHidden: 'This topic is closed'
   },
   errors: {
     emailNotEndsWith: 'Email must end with {$1}',
     emailLinkExpired: 'Sorry this verification link has expired',
     questionNotExists: 'The question does not exists',
-    alreadyVoted: 'The user already voted'
+    alreadyVoted: 'The user already voted',
+    mustVerify: 'The user must verify the email to vote',
+    topicHidden: 'The topic is closed'
   },
   emails: {
     verifyEmail: {
       subject: 'Confirm Your Email Address',
-      text: 'Hello {$1},\n\nTo verify your account email, simply click the link below.\n\n{$2}\n\nThanks.\n'
+      html: '<h1>{$1}</h1><p>Hello {$2},</p><p>To verify your account email, simply click the link below.</p><p><a href="{$3}">Verify Email</a></p>'
     },
     resetPassword: {
       subject: 'Reset Password',
@@ -29,7 +33,7 @@ i18n.map('en', {
     },
     newTopic: {
       subject: 'New Topic',
-      text: 'Hello {$1},\n\nThere is a new topic to discuss, you can do it in the link below.\n\n{$2}\n\nThanks.\n'
+      html: '<h1>{$1}</h1><p>Hello {$2},</p><p>There is a new topic to discuss.</p><h3><a href="{$3}">{$4}</a></h3><p><i>{$5}</i></p>'
     }
   },
   dictionary: {
@@ -56,7 +60,7 @@ i18n.map('en', {
       description: 'Description',
       slug: 'Slug',
       hidden: 'Hidden',
-
+      content: 'Content'
     }
   },
   questions: {

@@ -5,6 +5,11 @@
       <br>
       <h4 class="center">{{ title }}</h4>
       <p class="center">{{ description }}</p>
+      {{# if hidden }}
+        <p class="grey-text center">
+          {{ i18n 'lib.topicHidden' }}
+        </p>
+      {{/ if }}
       {{# if content }}
         <div class="row">
           <div class="col s12 m12 l10 offset-l1">
@@ -28,48 +33,58 @@
             <tr>
               <td>{{ title }}</td>
               <td>
-                {{# if currentUser }}
-                  {{# if userVoteIs currentUser._id 'yes' }}
-                    <input name="vote-{{ _id }}" type="radio" value="yes" id="vote-yes-{{ _id }}" checked/>
-                    <label for="vote-yes-{{ _id }}">{{ getCount 'yes' }}</label>
+                {{# unless ../hidden }}
+                  {{# if currentUser }}
+                    {{# if currentUser.isVerified }}
+                      {{# if userVoteIs currentUser._id 'yes' }}
+                        <input name="vote-{{ _id }}" type="radio" value="yes" id="vote-yes-{{ _id }}" checked/>
+                      {{ else }}
+                        <input name="vote-{{ _id }}" type="radio" value="yes" id="vote-yes-{{ _id }}"/>
+                      {{/ if }}
+                    {{ else }}
+                      <input name="vote-{{ _id }}" type="radio" value="yes" id="vote-yes-{{ _id }}" disabled/>
+                    {{/ if }}
                   {{ else }}
-                    <input name="vote-{{ _id }}" type="radio" value="yes" id="vote-yes-{{ _id }}"/>
-                    <label for="vote-yes-{{ _id }}">{{ getCount 'yes' }}</label>
+                    <input name="vote-{{ _id }}" type="radio" value="yes" id="vote-yes-{{ _id }}" disabled/>
                   {{/ if }}
-                {{ else }}
-                  <input name="vote-{{ _id }}" type="radio" value="yes" id="vote-yes-{{ _id }}" disabled/>
-                  <label for="vote-yes-{{ _id }}">{{ getCount 'yes' }}</label>
-                {{/ if }}
-                <br>
-                
+                {{/ unless }}
+                <label for="vote-yes-{{ _id }}">{{ getCount 'yes' }}</label>
               </td>
               <td>
-                {{# if currentUser }}
-                  {{# if userVoteIs currentUser._id 'no' }}
-                    <input name="vote-{{ _id }}" type="radio" value="no" id="vote-no-{{ _id }}" checked/>
-                    <label for="vote-no-{{ _id }}">{{ getCount 'no' }}</label>
+                {{# unless ../hidden }}
+                  {{# if currentUser }}
+                    {{# if currentUser.isVerified }}
+                      {{# if userVoteIs currentUser._id 'no' }}
+                        <input name="vote-{{ _id }}" type="radio" value="no" id="vote-no-{{ _id }}" checked/>
+                      {{ else }}
+                        <input name="vote-{{ _id }}" type="radio" value="no" id="vote-no-{{ _id }}"/>
+                      {{/ if }}
+                    {{ else }}
+                      <input name="vote-{{ _id }}" type="radio" value="no" id="vote-no-{{ _id }}" disabled/>
+                    {{/ if }}
                   {{ else }}
-                    <input name="vote-{{ _id }}" type="radio" value="no" id="vote-no-{{ _id }}"/>
-                    <label for="vote-no-{{ _id }}">{{ getCount 'no' }}</label>
+                    <input name="vote-{{ _id }}" type="radio" value="no" id="vote-no-{{ _id }}" disabled/>
                   {{/ if }}
-                {{ else }}
-                  <input name="vote-{{ _id }}" type="radio" value="yes" id="vote-yes-{{ _id }}" disabled/>
-                  <label for="vote-yes-{{ _id }}">{{ getCount 'yes' }}</label>
-                {{/ if }}
+                {{/ unless }}
+                <label for="vote-no-{{ _id }}">{{ getCount 'no' }}</label>
               </td>
               <td>
-                {{# if currentUser }}
-                  {{# if userVoteIs currentUser._id 'abstention' }}
-                    <input name="vote-{{ _id }}" type="radio" value="abstention" id="vote-abstention-{{ _id }}" checked/>
-                    <label for="vote-abstention-{{ _id }}">{{ getCount 'abstention' }}</label>
+                {{# unless ../hidden }}
+                  {{# if currentUser }}
+                    {{# if currentUser.isVerified }}
+                      {{# if userVoteIs currentUser._id 'abstention' }}
+                        <input name="vote-{{ _id }}" type="radio" value="abstention" id="vote-abstention-{{ _id }}" checked/>
+                      {{ else }}
+                        <input name="vote-{{ _id }}" type="radio" value="abstention" id="vote-abstention-{{ _id }}"/>
+                      {{/ if }}
+                    {{ else }}
+                      <input name="vote-{{ _id }}" type="radio" value="abstention" id="vote-abstention-{{ _id }}" disabled/>
+                    {{/ if }}
                   {{ else }}
-                    <input name="vote-{{ _id }}" type="radio" value="abstention" id="vote-abstention-{{ _id }}"/>
-                    <label for="vote-abstention-{{ _id }}">{{ getCount 'abstention' }}</label>
+                    <input name="vote-{{ _id }}" type="radio" value="abstention" id="vote-abstention-{{ _id }}" disabled/>
                   {{/ if }}
-                {{ else }}
-                  <input name="vote-{{ _id }}" type="radio" value="yes" id="vote-yes-{{ _id }}" disabled/>
-                  <label for="vote-yes-{{ _id }}">{{ getCount 'yes' }}</label>
-                {{/ if }}
+                {{/ unless }}
+                <label for="vote-abstention-{{ _id }}">{{ getCount 'abstention' }}</label>
               </td>
             </tr>
           {{/ each }}

@@ -9,7 +9,7 @@ Topics.after.insert(function(userId, doc) {
         to: user.emails[0].address, 
         from: orion.config.get('MAIL_FROM'), 
         subject: i18n('emails.newTopic.subject'), 
-        text: i18n('emails.newTopic.text', user.profile.name, url)
+        html: i18n('emails.newTopic.html', orion.dictionary.get('basic.title'), user.profile.name, url, doc.title, doc.description)
       });
     });
   });

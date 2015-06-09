@@ -14,11 +14,11 @@ Meteor.startup(function() {
     return i18n('emails.verifyEmail.subject');
   };
 
-  Accounts.emailTemplates.verifyEmail.text = function(user, url) {
+  Accounts.emailTemplates.verifyEmail.html = function(user, url) {
     if (user.profile.locale) {
       i18n.setLanguage(user.profile.locale);
     }
-    return i18n('emails.verifyEmail.text', user.profile.name, url);
+    return i18n('emails.verifyEmail.html', orion.dictionary.get('basic.title'), user.profile.name, url);
   };
 
   Accounts.emailTemplates.resetPassword.subject = function(user) {

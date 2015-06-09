@@ -11,3 +11,11 @@ community.allow('collections.votes.update', function(userId, doc, fields, modifi
 community.deny('collections.votes.update', function(userId, doc, fields, modifier) {
   return !_.isEqual(fields, ['option']);
 });
+
+community.deny('collections.votes.update', function(userId, doc, fields, modifier) {
+  var question = Questions.findOne(doc.questionId);
+  var topic = Topics.findOne(question.topicId);
+  if (topic && topic.hidden) {
+    return true;
+  }
+})
