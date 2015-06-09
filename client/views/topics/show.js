@@ -5,9 +5,14 @@ Template.topicsShow.onCreated(function() {
 Template.topicsShow.onRendered(function() {
   var count = 0
   var func = function() {
+    console.log(count);
     if (window.FB) {
-      window.FB.XFBML.parse(document.body);
+      console.log('hay')
+      Meteor.setTimeout(function() {
+        window.FB.XFBML.parse(document.body);
+      }, 300);
     } else if (count < 30) {
+      console.log('repetir')
       count++;
       Meteor.setTimeout(func, 40);
     }
