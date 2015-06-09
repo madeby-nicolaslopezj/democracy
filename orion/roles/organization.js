@@ -7,6 +7,7 @@ organization.allow('collections.topics.showRemove', true);
 organization.allow('collections.topics.insert', true);
 organization.allow('collections.topics.update', true);
 organization.allow('collections.topics.remove', true);
+organization.helper('collections.topics.indexFilter', {});
 
 organization.allow('collections.questions.index', true);
 organization.allow('collections.questions.showCreate', true);
@@ -15,6 +16,7 @@ organization.allow('collections.questions.showRemove', true);
 organization.allow('collections.questions.insert', true);
 organization.allow('collections.questions.update', true);
 organization.allow('collections.questions.remove', true);
+organization.helper('collections.questions.indexFilter', {});
 
 organization.allow('pages.index', true);
 organization.allow('pages.insert', true);

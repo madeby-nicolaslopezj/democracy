@@ -71,9 +71,9 @@ orionjs:dictionary@1.1.0
 orionjs:filesystem@1.1.0
 orionjs:froala@1.1.0
 orionjs:lang-en@1.1.1
-orionjs:lang-es@1.1.1
+orionjs:lang-es@1.1.2
 orionjs:materialize@1.1.5
-orionjs:pages@1.1.0
+orionjs:pages@1.1.1
 orionjs:relationships@1.1.2
 random@1.0.3
 reactive-dict@1.1.0
