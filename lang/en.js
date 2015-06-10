@@ -38,7 +38,8 @@ i18n.map('en', {
   },
   dictionary: {
     basic: {
-      title: 'Title of the site'
+      title: 'Title of the site',
+      description: 'Description'
     },
     footer: {
       title: 'Title of the footer',
